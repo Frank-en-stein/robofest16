@@ -4,6 +4,10 @@ void nolineTurnSelect() {
     if(!leftPrefer) LeftTurn();
     else RightTurn();
   }
+  else if(leftPrefer && left90) LeftTurn();
+  else if(!leftPrefer && right90) RightTurn();
+  else if(left90) LeftTurn();
+  else if(right90) RightTurn();
   else if(outOfLine == leftOut) LeftTurn();
   else if(outOfLine == rightOut) RightTurn();
                    
@@ -16,8 +20,10 @@ void intersectionTurnSelect() {
     if(leftPrefer) intersection_LeftTurn();
     else intersection_RightTurn();
   }
-  else if(/*leftPrefer && */left90) intersection_LeftTurn();
-  else if(/*!leftPrefer && */right90) intersection_RightTurn();
+  else if(leftPrefer && left90) intersection_LeftTurn();
+  else if(!leftPrefer && right90) intersection_RightTurn();
+  else if(left90) intersection_LeftTurn();
+  else if(right90) intersection_RightTurn();
   else if(outOfLine == leftOut) intersection_LeftTurn();
   else if(outOfLine == rightOut) intersection_RightTurn();
   else wheel(200,200);
@@ -81,7 +87,7 @@ void intersection_RightTurn(){
 //  stop();
 //  delay(10);
   //if(irUpdate()>2) blindRight90();
-  while(!((analogRead(MR) > threshhold[5]) ? !blackline:blackline)){
+  while(!((analogRead(R) > threshhold[5]) ? !blackline:blackline)){
     wheel(120,-120);
     
   }

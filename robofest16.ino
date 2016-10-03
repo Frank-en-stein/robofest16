@@ -69,7 +69,7 @@ double thresh_const = .65;
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
 //  mySerial.begin(9600);
 
   setColorCases();
@@ -154,14 +154,14 @@ void setup()
 void loop() {
   lineFollowing();
   delay(SETTLE_TIME);
-//      for (int i = 0; i < 7; i++) {
-//        Serial.print(S[i]);
-//        Serial.print(' ');
-//      }
+      for (int i = 0; i < 7; i++) {
+        Serial.print(S[i]);
+        Serial.print(' ');
+      }
 //      Serial.print('\t');
 //      Serial.print(currentError);
-//      Serial.print(outOfLine);
-//      Serial.print(' ');
+      Serial.print(outOfLine);
+      Serial.print(' ');
 //      Serial.print(backuplineOut);
 //      Serial.print('\t');
 //      Serial.print(blackline);
@@ -169,14 +169,16 @@ void loop() {
 //      Serial.print(left90);
 //      Serial.print(' ');
 //      Serial.print(right90);
-//      Serial.println(' ');
+      Serial.print(' ');
+      Serial.print(turnfed);
+      Serial.println(' ');
 //     return; 
 
   if(currentError == 0 && sum==7) {                   //end condition
     hardbrake();
     delay(10);    
     while(!errorCalculation());
-    if(sum==7){
+    if(sum==7){delay(1000);
       wheel(200,200);
       delay(30);
       hardbrake();
@@ -204,11 +206,11 @@ void loop() {
     if(sum==0) nolineTurnSelect();
     else intersectionTurnSelect();
   }
-  else if(left90 || right90) {
+  else 
+  if(left90 || right90) {
     hardbrake();
-    delay(10);   
-    while(!errorCalculation());
-    if(sum==0) nolineTurnSelect();
+    delay(30); 
+    if(irUpdate()==0) nolineTurnSelect();
     else intersectionTurnSelect();  
   }
   else 

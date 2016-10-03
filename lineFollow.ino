@@ -72,9 +72,9 @@ void lineFollowing()
 {
   while(!errorCalculation());
   //intersection catching
-  if(ar[S[0]][S[1]][S[2]][S[3]][S[4]][S[5]][S[6]]==5) right90=left90=true;
-  else if(S[6]+S[5]+S[4]+S[3]==4) left90=!(right90=true);
-  else if(S[0]+S[1]+S[2]+S[3]==4) right90=!(left90=true);
+  if(S[0]+S[3]+S[6]==3) right90=left90=true;
+  else if(S[6]+S[5]==2) left90=!(right90=true);
+  else if(S[0]+S[1]==2) right90=!(left90=true);
   
   //if(left90 || right90) wheel(0,0); 
   //intersection catching ends
@@ -83,28 +83,28 @@ void lineFollowing()
   if(blackline) {
     if(analogRead(MR) < threshhold[6] || S[6]) {
       //delay(5);
-      if(analogRead(MR) < threshhold[6]) 
+      //if(analogRead(MR) < threshhold[6]) 
         outOfLine = rightOut;
     }
     if(analogRead(ML) < threshhold[0] || S[0]) {
       //delay(5);
-      if(analogRead(ML) < threshhold[0]) 
+      //if(analogRead(ML) < threshhold[0]) 
         outOfLine = leftOut;
+        if(outOfLine==rightOut) outOfLine=bothOut;
     }
-    if(outOfLine==rightOut) outOfLine=bothOut;
   }
   else {
     if(analogRead(MR) > threshhold[6] || S[6]) {
       //delay(5);
-      if(analogRead(MR) > threshhold[6]) 
+      //if(analogRead(MR) > threshhold[6]) 
         outOfLine = rightOut;
     }
     if(analogRead(ML) > threshhold[0] || S[0]) {
       //delay(5);
-      if(analogRead(ML) > threshhold[0]) 
+      //if(analogRead(ML) > threshhold[0]) 
         outOfLine = leftOut;
+        if(outOfLine==rightOut) outOfLine=bothOut;
     }
-    if(outOfLine==rightOut) outOfLine=bothOut;
   }
   //lineout ends
   
