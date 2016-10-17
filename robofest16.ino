@@ -1,6 +1,6 @@
 #include <EEPROM.h>
 
-#define Kp 45
+#define Kp 80
 #define Kd 275
 #define Ki 0.0
 #define SETTLE_TIME 10
@@ -8,7 +8,7 @@
 #define MAX 250
 #define revMAX 50
 
-#define THROTTLE 190
+#define THROTTLE 220
 #define SAFE_THROTTLE 90
 
 #define ML A7
@@ -154,14 +154,14 @@ void setup()
 void loop() {
   lineFollowing();
   delay(SETTLE_TIME);
-      for (int i = 0; i < 7; i++) {
-        Serial.print(S[i]);
-        Serial.print(' ');
-      }
+//      for (int i = 0; i < 7; i++) {
+//        Serial.print(S[i]);
+//        Serial.print(' ');
+//      }
 //      Serial.print('\t');
 //      Serial.print(currentError);
-      Serial.print(outOfLine);
-      Serial.print(' ');
+//      Serial.print(outOfLine);
+//      Serial.print(' ');
 //      Serial.print(backuplineOut);
 //      Serial.print('\t');
 //      Serial.print(blackline);
@@ -169,24 +169,24 @@ void loop() {
 //      Serial.print(left90);
 //      Serial.print(' ');
 //      Serial.print(right90);
-      Serial.print(' ');
-      Serial.print(turnfed);
-      Serial.println(' ');
+//      Serial.print(' ');
+//      Serial.print(turnfed);
+//      Serial.println(' ');
 //     return; 
 
   if(currentError == 0 && sum==7) {                   //end condition
     hardbrake();
     delay(10);    
     while(!errorCalculation());
-    if(sum==7){delay(1000);
-      wheel(200,200);
-      delay(30);
+    if(sum==7){
+      wheel(150,150);
+      delay(100);
       hardbrake();
       delay(10);
       while(!errorCalculation());
       if(sum==7){  //end condition
         wheel(200,200);
-        delay(10);
+        delay(30);
         stop();
         delay(20);
         while(1){
@@ -198,7 +198,8 @@ void loop() {
     if(sum==0) nolineTurnSelect();
     else intersectionTurnSelect();
   }
-  else if(sum>=5) {
+  else 
+  if(sum>=5) {
     hardbrake();
     delay(10);   
     while(!errorCalculation());

@@ -1,5 +1,5 @@
-//1.figure out angular branch
-//2.
+//1.fix half circle
+//2.debug always breaking
 //
 //
 //

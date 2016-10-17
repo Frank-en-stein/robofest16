@@ -12,7 +12,7 @@ void nolineTurnSelect() {
   else if(outOfLine == rightOut) RightTurn();
                    
   outOfLine =  notOut;
-  left90=right90=false;//delay(5000);
+  left90=right90=false;//delay(50);
 }
 
 void intersectionTurnSelect() {
@@ -29,14 +29,14 @@ void intersectionTurnSelect() {
   else wheel(200,200);
         
   outOfLine =  notOut;
-  left90=right90=false;  
+  left90=right90=false;//delay(50);  
 }
 //turn select ends
 
 //turns
 void RightTurn(){
-  //wheel(-200,-200);
-  //delay(30);
+//  wheel(200,200);
+//  delay(30);
   while(!((analogRead(C) > threshhold[3]) ? !blackline:blackline)){
     wheel(120,-120);
   }
@@ -47,19 +47,19 @@ void RightTurn(){
   while(!((analogRead(C) > threshhold[3]) ? !blackline:blackline)){
     wheel(-70,70);
   }
-  irUpdate();
-  while(S[5]+S[6]>0){
-    wheel(-90, 90);
-    irUpdate();
-  }
+//  irUpdate();
+//  while(S[5]+S[6]>0){
+//    wheel(-90, 90);
+//    irUpdate();
+//  }
   stop();
   delay(10);
-  wheel(THROTTLE, THROTTLE);
-  delay(50);
+  //wheel(THROTTLE, THROTTLE);
+  //delay(50);
 }
 void LeftTurn(){
-  //wheel(-200,-200);
-  //delay(30);                 
+//  wheel(200,200);
+//  delay(30);                 
   while(!((analogRead(C) > threshhold[3]) ? !blackline:blackline)){
     wheel(-120,120);
   }
@@ -70,15 +70,15 @@ void LeftTurn(){
   while(!((analogRead(C) > threshhold[3]) ? !blackline:blackline)){
     wheel(70,-70);
   }
-  irUpdate();
-  while(S[0]+S[1]>0){
-    wheel(90, -90);
-    irUpdate();
-  }
+//  irUpdate();
+//  while(S[0]+S[1]>0){
+//    wheel(90, -90);
+//    irUpdate();
+//  }
   stop();
   delay(10);
-  wheel(THROTTLE, THROTTLE);
-  delay(50);
+  //wheel(THROTTLE, THROTTLE);
+  //delay(50);
 }
 
 void intersection_RightTurn(){

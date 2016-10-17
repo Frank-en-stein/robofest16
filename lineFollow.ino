@@ -72,7 +72,7 @@ void lineFollowing()
 {
   while(!errorCalculation());
   //intersection catching
-  if(S[0]+S[3]+S[6]==3) right90=left90=true;
+  if(S[3]==1 && S[0]+S[1]>0 && S[5]+S[6]>0) right90=left90=true;
   else if(S[6]+S[5]==2) left90=!(right90=true);
   else if(S[0]+S[1]==2) right90=!(left90=true);
   
